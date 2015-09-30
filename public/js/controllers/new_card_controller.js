@@ -1,4 +1,4 @@
-app.controller('NewCardController', function($scope, flashCardsNav){
+app.controller('NewCardController', function($scope){
 	$scope.newCard = {
     question: null,
     category: null,

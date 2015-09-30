@@ -8,18 +8,19 @@
     </head>
     <body ng-app="flashCards">
         <div style="text-align: center" ng-controller="NewCardController">
-            <label for="question">{{newCard.question}}</label>
-            <input type="text" id="question">
-            <select>
-                <option value="1">MongoDB<option>
-                <option value="2">Express<option>
-                <option value="3">Angular<option>
-                <option value="4">Node<option>
+            <label for="question">enter question here</label>
+            <input type="text" id="question" ng-model="newCard.question">
+            <select ng-model="newCard.category">
+                <option value="MongoDB">MongoDB<option>
+                <option value="Express">Express<option>
+                <option value="Angular">Angular<option>
+                <option value="Node">Node<option>
             </select><br>
-            <input type="text" id="answer1" value="{{newCard.answers[0].text}}">Answer 1<input type="checkbox" id="checkbox1"><br>
-            <input type="text" id="answer2" value="{{newCard.answers[1].text}}">Answer 2<input type="checkbox" id="checkbox2"><br>
-            <input type="text" id="answer3" value="{{newCard.answers[2].text}}">Answer 3<input type="checkbox" id="checkbox3">
+            <input type="text" id="answer1" ng-model="newCard.answers[0].text">Answer 1 - check if correct<input type="checkbox" id="checkbox1"><br>
+            <input type="text" id="answer2" ng-model="newCard.answers[1].text">Answer 2 - check if correct<input type="checkbox" id="checkbox2"><br>
+            <input type="text" id="answer3" ng-model="newCard.answers[2].text">Answer 3 - check if correct<input type="checkbox" id="checkbox3">
             <pre>{{ newCard | json }} </pre>
+            <button style="margin-top: 10px">Submit</button>
         </div>
         <div ng-controller="MainController">
 
