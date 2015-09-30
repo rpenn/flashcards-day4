@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flash Cards</title>
+        <!-- We've provided some styles for you, aren't we nice? -->
+        <link rel="stylesheet" type="text/css" href="/css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    </head>
+    <body ng-app="flashCards">
+        <div style="text-align: center" ng-controller="NewCardController">
+            <label for="question">{{newCard.question}}</label>
+            <input type="text" id="question">
+            <select>
+                <option value="1">MongoDB<option>
+                <option value="2">Express<option>
+                <option value="3">Angular<option>
+                <option value="4">Node<option>
+            </select><br>
+            <input type="text" id="answer1" value="{{newCard.answers[0].text}}">Answer 1<input type="checkbox" id="checkbox1"><br>
+            <input type="text" id="answer2" value="{{newCard.answers[1].text}}">Answer 2<input type="checkbox" id="checkbox2"><br>
+            <input type="text" id="answer3" value="{{newCard.answers[2].text}}">Answer 3<input type="checkbox" id="checkbox3">
+            <pre>{{ newCard | json }} </pre>
+        </div>
+        <div ng-controller="MainController">
+
+          <flash-cards-nav on-category-changed='setCategory(cat)'></flash-cards-nav>
+          <cheater cheat='cheat'></cheater>
+
+          <stats></stats>
+
+          <flash-cards flash-cards='flashCards' cheat='cheat'></flash-cards>
+
+
+        	<script src="/js/lib/angular.js"></script>
+        	<script src="/js/app.js"></script>
+
+        	<script src="/js/factories/flash_cards_factory.js"></script>
+        	<script src="/js/factories/score_factory.js"></script>
+
+        	<script src="/js/controllers/main.controller.js"></script>
+            <script src="/js/controllers/new_card_controller.js"></script>
+        	<script src="/js/filters/cheat.js"></script>
+
+        	<script src="/js/directives/stats.js"></script>
+        	<script src="/js/directives/flash_cards_nav.js"></script>
+        	<script src="/js/directives/flash_card.js"></script>
+        	<script src="/js/directives/flash_cards.js"></script>
+        	<script src="/js/directives/cheater.js"></script>
+        </div>
+    </body>
+</html>

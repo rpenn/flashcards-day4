@@ -1,0 +1,6 @@
+<div style='text-align:center; margin-top:10px'>
+  <button class="category-button" ng-class='{active: category == active}' ng-repeat='category in categories' ng-click='setCategory(category)'>{{category}}</button>
+  <button class="category-button" 
+    ng-class='{active: !active}' 
+    ng-click='setCategory()'>Show All</button>
+</div>

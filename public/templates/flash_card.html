@@ -1,0 +1,14 @@
+<h1>{{ flashCard.question | uppercase }}</h1>
+<ul class="flash-card-answers">
+  <li
+    ng-repeat="answer in flashCard.answers | cheat:cheat"
+    class="flash-card-answer"
+    ng-click="answerQuestion(answer, flashCard)">{{ answer.text }}</li>
+</ul>
+<h2
+  class="answer-feedback"
+  ng-class="flashCard.answeredCorrectly ? 'correct' : 'incorrect'"
+  ng-show="flashCard.answered">
+    <span ng-show="flashCard.answeredCorrectly">Yeah, you got it right!</span>
+    <span ng-show="!flashCard.answeredCorrectly">Nope, you got it wrong.</span>
+</h2>
