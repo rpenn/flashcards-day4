@@ -50,7 +50,7 @@ app.get('/cards', function (req, res) {
 });
 
 app.post('/cards', function(req, res) {
-    var flashCard = new FlashCard(req.body);
+    var flashCard = new FlashCardModel(req.body);
     flashCard.save()
         .then(function(){
             res.send(flashCard);
