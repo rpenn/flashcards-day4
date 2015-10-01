@@ -1,4 +1,4 @@
-app.controller('NewCardController', function($scope){
+app.controller('NewCardController', function($scope, $http, FlashCardsFactory){
 	$scope.newCard = {
     question: null,
     category: null,
@@ -9,33 +9,10 @@ app.controller('NewCardController', function($scope){
     ]
 	}
 
-	// $scope.addNewCard = function() {
-	// 	$('form').on('submit', function(event){
-	// 		event.preventDefault;
-	// 		$.ajax('/cards', {
-	// 			type: 'POST',
-	// 			contentType: 'application/json',
-	// 			dataType: 'json',
-	// 			data: $('form').serialize(),
-	// 			success: function(result) {
-	// 				return result;
-	// 			}
-	// 		});
-	// 	})
-	// }
-
-	$scope.addNewCard = function() {
-			$.ajax('/cards', {
-				type: 'POST',
-				contentType: 'application/json',
-				dataType: 'json',
-				data: {
-					question: $('#question').val(),
-					category: $('#category').val()
-				},
-				success: function(result) {
-					return result;
-				}
+	$scope.addNewCard = function(card) {
+		console.log(card);
+		FlashCardsFactory.addNewCard(card)
+			.then(function(result){
 			});
 	}
 });

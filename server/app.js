@@ -21,6 +21,8 @@ var indexHtmlPath = path.join(__dirname, '../index.html');
 // When our server gets a request and the url matches
 // something in our public folder, serve up that file
 // e.g. angular.js, style.css
+app.use(bodyParser.json());
+
 app.use(express.static(publicPath));
 
 // If we're hitting our home page, serve up our index.html file!
@@ -50,9 +52,9 @@ app.get('/cards', function (req, res) {
 });
 
 app.post('/cards', function(req, res) {
-    var flashCard = new FlashCardModel(req.body);
-    flashCard.save()
-        .then(function(){
-            res.send(flashCard);
-        });
+    FlashCardModel.create(req.body)
+    .then(function(flashCard){
+        console.log(flashCard);
+        res.send(flashCard);
+    });
 });

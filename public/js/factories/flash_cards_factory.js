@@ -1,6 +1,7 @@
 app.factory('FlashCardsFactory', function ($http) {
     return { 
-      getFlashCards: getFlashCards 
+      getFlashCards: getFlashCards,
+      addNewCard: addNewCard
     };
 
     function getFlashCards(category){
@@ -12,4 +13,12 @@ app.factory('FlashCardsFactory', function ($http) {
                   return results.data;
                 });
     }
+
+    function addNewCard(newCard) {
+      return $http.post('/cards', newCard)
+        .then(function(result){
+          return result.config.data;
+        });
+    }
 });
+
