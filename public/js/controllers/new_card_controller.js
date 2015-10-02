@@ -9,10 +9,16 @@ app.controller('NewCardController', function($scope, $http, FlashCardsFactory){
     ]
 	}
 
+	$scope.types = [
+		{name: 'MongoDB'},
+		{name: 'Express'},
+		{name: 'Angular'},
+		{name: 'Node'}
+	];
+
 	$scope.addNewCard = function(card) {
-		console.log(card);
-		FlashCardsFactory.addNewCard(card)
-			.then(function(result){
-			});
+		FlashCardsFactory.addNewCard(card);
+			// .then(function(result){
+			// });
 	}
 });

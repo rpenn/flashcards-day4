@@ -9,37 +9,25 @@
     <body ng-app="flashCards">
 <!-- This will use the form -->
         <div style="text-align: center" ng-controller="NewCardController">
-            <form name="newCardForm">
+            <form name="newCardForm" ng-submit="addNewCard(newCard)">
+        
                 <label for="question">enter question here</label>
-                <input type="text" id="question" name="question" ng-model="newCard.question">
-                <select id="category" name="category" ng-model="newCard.category">
-                    <option value="MongoDB">MongoDB<option>
-                    <option value="Express">Express<option>
-                    <option value="Angular">Angular<option>
-                    <option value="Node">Node<option>
-                </select><br>
-                <input type="text" id="answer0" name="answer0" ng-model="newCard.answers[0].text">Answer 1 - check if correct<input type="checkbox" id="checkbox0" ng-model="newCard.answers[0].correct"><br>
-                <input type="text" id="answer1" name="answer1" ng-model="newCard.answers[1].text">Answer 2 - check if correct<input type="checkbox" id="checkbox1" ng-model="newCard.answers[1].correct"><br>
-                <input type="text" id="answer2" name="answer2" ng-model="newCard.answers[2].text">Answer 3 - check if correct<input type="checkbox" id="checkbox2" ng-model="newCard.answers[2].correct">
-                <pre>{{ newCard | json }} </pre>
-                <button class="submit-data" style="margin-top: 10px" ng-click="addNewCard(newCard)">Submit</button>
+                <input type="text" id="question" name="question" ng-model="newCard.question" ng-minlength="15" required><br>
+                <label class='label label-warning' ng-show="newCardForm.question.$error.required" >Question is a required field</label>
+                <label class='label label-warning' ng-show="newCardForm.question.$error.minlength" >Question is too short</label>
+                <select ng-init='newCard.category = newCard.category || types[0].name' ng-model='newCard.category' ng-options="item.name as item.name for item in types" ></select><br>
+                <input type="text" id="answer0" name="answer0" ng-model="newCard.answers[0].text" ng-maxlength="40" required>Answer 1 - check if correct<input type="checkbox" id="checkbox0" ng-model="newCard.answers[0].correct">
+                <label class='label label-warning' ng-show="newCardForm.answer0.$error.maxlength" >Answer is too long</label><br>
+                <input type="text" id="answer1" name="answer1" ng-model="newCard.answers[1].text" ng-maxlength="40" required>Answer 2 - check if correct<input type="checkbox" id="checkbox1" ng-model="newCard.answers[1].correct">
+                <label class='label label-warning' ng-show="newCardForm.answer1.$error.maxlength" >Answer is too long</label><br>
+                <input type="text" id="answer2" name="answer2" ng-model="newCard.answers[2].text" ng-maxlength="40" required>Answer 3 - check if correct<input type="checkbox" id="checkbox2" ng-model="newCard.answers[2].correct">
+                <label class='label label-warning' ng-show="newCardForm.answer2.$error.maxlength" >Answer is too long</label><br>
+                <!-- <pre>{{ newCard | json }} </pre> -->
+<!--                 <button class='btn btn-primary' style="margin-top: 10px" ng-click="addNewCard(newCard)" ng-disable="newCardFrom.$invalid">Submit</button> -->
+                <input type="submit" id="submit" value="submit" ng-disabled="newCardForm.$invalid"/>
             </form>
+
         </div>
-<!--         <div style="text-align: center" ng-controller="NewCardController">
-            <label for="question">enter question here</label>
-            <input type="text" id="question" name="question" ng-model="newCard.question">
-            <select id="category" name="category" ng-model="newCard.category">
-                <option value="MongoDB">MongoDB<option>
-                <option value="Express">Express<option>
-                <option value="Angular">Angular<option>
-                <option value="Node">Node<option>
-            </select><br>
-            <input type="text" id="answer1" name="answer1" ng-model="newCard.answers[0].text">Answer 1 - check if correct<input type="checkbox" id="checkbox1"><br>
-            <input type="text" id="answer2" name="answer2" ng-model="newCard.answers[1].text">Answer 2 - check if correct<input type="checkbox" id="checkbox2"><br>
-            <input type="text" id="answer3" name="answer3" ng-model="newCard.answers[2].text">Answer 3 - check if correct<input type="checkbox" id="checkbox3">
-            <pre>{{ newCard | json }} </pre>
-            <button class="submit-data" style="margin-top: 10px" ng-click="addNewCard()">Submit</button>
-        </div> -->
         <div ng-controller="MainController">
 
           <flash-cards-nav on-category-changed='setCategory(cat)'></flash-cards-nav>
@@ -51,6 +39,7 @@
 
 
         	<script src="/js/lib/angular.js"></script>
+            <script src="/bower_components/jquery/dist/jquery.js"></script>
         	<script src="/js/app.js"></script>
 
         	<script src="/js/factories/flash_cards_factory.js"></script>
@@ -65,6 +54,7 @@
         	<script src="/js/directives/flash_card.js"></script>
         	<script src="/js/directives/flash_cards.js"></script>
         	<script src="/js/directives/cheater.js"></script>
+            <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
         </div>
     </body>
 </html>

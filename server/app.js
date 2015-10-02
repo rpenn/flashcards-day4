@@ -24,9 +24,11 @@ var indexHtmlPath = path.join(__dirname, '../index.html');
 app.use(bodyParser.json());
 
 app.use(express.static(publicPath));
+app.use('/bower_components', express.static(path.join(__dirname, '../bower_components')))
 
 // If we're hitting our home page, serve up our index.html file!
 app.get('/', function (req, res) {
+    console.log(__dirname);
     res.sendFile(indexHtmlPath);
 });
 
